@@ -5,7 +5,9 @@ import Login from './components/Login';
 import EmployeeDashboard from './components/EmployeeDashboard';
 import AdminDashboard from './components/AdminDashboard';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer'; // Import the Footer component
 import NotFound from './pages/NotFound';
+import Register from './components/Register';
 import './stylesheets/App.css';
 
 // Set Axios base URL for Docker or local
@@ -40,20 +42,28 @@ function App() {
 
   return (
     <Router>
-      <Navbar user={user} onLogout={handleLogout} />
-      <Routes>
-        <Route path="/" element={
-          user ? (
-            user.role === 'admin' ? <AdminDashboard token={token} /> : <EmployeeDashboard token={token} />
-          ) : (
-            <Navigate to="/login" />
-          )
-        } />
-        <Route path="/login" element={
-          user ? <Navigate to="/" /> : <Login onLogin={handleLogin} />
-        } />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <div className="app-container">
+        <Navbar user={user} onLogout={handleLogout} />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={
+              user ? (
+                user.role === 'admin' ? <AdminDashboard token={token} /> : <EmployeeDashboard token={token} />
+              ) : (
+                <Navigate to="/login" />
+              )
+            } />
+            <Route path="/login" element={
+              user ? <Navigate to="/" /> : <Login onLogin={handleLogin} />
+            } />
+            <Route path="/register" element={
+              user ? <Navigate to="/" /> : <Register />
+            } />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </Router>
   );
 }

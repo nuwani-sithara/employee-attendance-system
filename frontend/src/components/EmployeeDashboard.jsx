@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AttendanceTable from './AttendanceTable';
 import '../stylesheets/EmployeeDashboard.css';
+import { FontAwesomeIcon } from '../fontAwesome';
 
 const EmployeeDashboard = ({ token }) => {
   const [logs, setLogs] = useState([]);
@@ -43,12 +44,12 @@ const EmployeeDashboard = ({ token }) => {
       await axios.post('/attendance/checkin', {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setMessage('You have successfully checked in!');
+      setMessage('Check-in recorded successfully');
       setCurrentStatus('checked-in');
       fetchLogs();
       setTimeout(() => setMessage(''), 3000);
     } catch (err) {
-      setMessage(err.response?.data?.message || 'Check-in failed. Please try again.');
+      setMessage(err.response?.data?.message || 'Failed to check in. Please try again.');
     }
   };
 
@@ -58,31 +59,35 @@ const EmployeeDashboard = ({ token }) => {
       await axios.post('/attendance/checkout', {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setMessage('You have successfully checked out!');
+      setMessage('Check-out recorded successfully');
       setCurrentStatus('checked-out');
       fetchLogs();
       setTimeout(() => setMessage(''), 3000);
     } catch (err) {
-      setMessage(err.response?.data?.message || 'Check-out failed. Please try again.');
+      setMessage(err.response?.data?.message || 'Failed to check out. Please try again.');
     }
   };
 
   return (
     <div className="employee-dashboard">
       <div className="dashboard-header">
-        <h2>My Attendance</h2>
+        <div>
+          <h2>Attendance Dashboard</h2>
+          <p className="dashboard-subtitle">View and manage your attendance records</p>
+        </div>
         <div className={`status-badge ${currentStatus}`}>
           {currentStatus === 'checked-in' ? (
-            <><i className="fas fa-check-circle"></i> Currently Checked In</>
+            <><FontAwesomeIcon icon="circle-check" /> Checked In</>
           ) : (
-            <><i className="fas fa-times-circle"></i> Currently Checked Out</>
+            <><FontAwesomeIcon icon="circle-xmark" /> Checked Out</>
           )}
         </div>
       </div>
 
       {message && (
         <div className={`action-message ${message.includes('successfully') ? 'success' : 'error'}`}>
-          {message}
+          <FontAwesomeIcon icon={message.includes('successfully') ? "check-circle" : "exclamation-circle"} />
+          <span>{message}</span>
         </div>
       )}
 
@@ -92,22 +97,28 @@ const EmployeeDashboard = ({ token }) => {
           disabled={currentStatus === 'checked-in'}
           className="checkin-btn"
         >
-          <i className="fas fa-fingerprint"></i> Check In
+          <FontAwesomeIcon icon="fingerprint" /> Check In
         </button>
         <button 
           onClick={handleCheckOut} 
           disabled={currentStatus === 'checked-out'}
           className="checkout-btn"
         >
-          <i className="fas fa-sign-out-alt"></i> Check Out
+          <FontAwesomeIcon icon="right-from-bracket" /> Check Out
         </button>
       </div>
 
       <div className="attendance-section">
-        <h3>My Attendance History</h3>
+        <div className="section-header">
+          <h3>Attendance History</h3>
+          <button onClick={fetchLogs} className="refresh-btn">
+            <FontAwesomeIcon icon="rotate" /> Refresh
+          </button>
+        </div>
+        
         {loading ? (
           <div className="loading-spinner">
-            <i className="fas fa-spinner fa-spin"></i> Loading attendance records...
+            <FontAwesomeIcon icon="spinner" spin /> Loading records...
           </div>
         ) : (
           <AttendanceTable logs={logs} />
