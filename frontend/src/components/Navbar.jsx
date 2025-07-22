@@ -4,18 +4,28 @@ import '../stylesheets/Navbar.css';
 
 const Navbar = ({ user, onLogout }) => (
   <nav className="navbar">
-    <div>Attendance System</div>
-    <div>
+    <div className="navbar-brand">
+      <span className="system-name">AttendancePro</span>
+      <span className="system-tagline">Employee Management</span>
+    </div>
+    <div className="navbar-actions">
       {user ? (
-        <>
-          <span>{user.username} ({user.role})</span>
-          <a href="#" onClick={onLogout} style={{ marginLeft: '1rem' }}>Logout</a>
-        </>
+        <div className="user-profile">
+          <div className="user-info">
+            <span className="user-name">{user.username}</span>
+            <span className="user-role">{user.role}</span>
+          </div>
+          <button onClick={onLogout} className="logout-btn">
+            <i className="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
       ) : (
-        <Link to="/login">Login</Link>
+        <Link to="/login" className="login-btn">
+          <i className="fas fa-sign-in-alt"></i> Login
+        </Link>
       )}
     </div>
   </nav>
 );
 
-export default Navbar; 
+export default Navbar;
