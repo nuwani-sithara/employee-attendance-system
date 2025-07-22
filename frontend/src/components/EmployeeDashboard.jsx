@@ -121,7 +121,7 @@ const EmployeeDashboard = ({ token }) => {
             <FontAwesomeIcon icon="spinner" spin /> Loading records...
           </div>
         ) : (
-          <AttendanceTable logs={logs} />
+          <AttendanceTable logs={logs} isAdmin={false} />
         )}
       </div>
     </div>

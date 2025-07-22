@@ -92,7 +92,7 @@ const AdminDashboard = ({ token }) => {
               Showing {filteredLogs.length} of {logs.length} records
             </div>
           </div>
-          <AttendanceTable logs={filteredLogs} />
+          <AttendanceTable logs={filteredLogs} isAdmin={true} />
         </div>
       )}
     </div>

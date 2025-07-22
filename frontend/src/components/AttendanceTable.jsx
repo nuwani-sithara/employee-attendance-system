@@ -12,7 +12,7 @@ const formatDuration = (start, end) => {
   return `${diffHrs.toString().padStart(2, '0')}h ${diffMins.toString().padStart(2, '0')}m`;
 };
 
-const AttendanceTable = ({ logs }) => {
+const AttendanceTable = ({ logs, isAdmin = false }) => {
   if (!logs.length) return (
     <div className="no-records">
       <div className="no-records-icon">
@@ -32,7 +32,7 @@ const AttendanceTable = ({ logs }) => {
             <th>Check In</th>
             <th>Check Out</th>
             <th>Duration</th>
-            {logs[0].user && <th>Employee</th>}
+            {isAdmin && <th>Employee</th>}
           </tr>
         </thead>
         <tbody>
@@ -68,7 +68,7 @@ const AttendanceTable = ({ logs }) => {
                     </span>
                   ) : '-'}
                 </td>
-                {log.user && <td>{log.user.username}</td>}
+                {isAdmin && log.user && <td>{log.user.username}</td>}
               </tr>
             );
           })}
