@@ -32,7 +32,7 @@ const AttendanceTable = ({ logs }) => {
             <th>Check In</th>
             <th>Check Out</th>
             <th>Duration</th>
-            {/* {logs[0].user && <th>Employee</th>} */}
+            {logs[0].user && <th>Employee</th>}
           </tr>
         </thead>
         <tbody>
@@ -68,7 +68,7 @@ const AttendanceTable = ({ logs }) => {
                     </span>
                   ) : '-'}
                 </td>
-                {/* {log.user && <td>{log.user.username}</td>} */}
+                {log.user && <td>{log.user.username}</td>}
               </tr>
             );
           })}
