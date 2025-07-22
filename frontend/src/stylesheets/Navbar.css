@@ -1,17 +1,78 @@
-/* Navbar component styles */
+/* Navbar.css */
 .navbar {
-  background: #007bff;
+  background: linear-gradient(135deg, #3a4f6a 0%, #1e2b3a 100%);
   color: #fff;
-  padding: 1rem 2rem;
+  padding: 0.8rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
-.navbar a {
+
+.navbar-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.system-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.system-tagline {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+.navbar-actions a, .navbar-actions button {
   color: #fff;
   text-decoration: none;
-  margin-left: 1rem;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
 }
-.navbar a:hover {
-  text-decoration: underline;
-} 
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.user-name {
+  font-weight: 600;
+}
+
+.user-role {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  text-transform: capitalize;
+}
+
+.logout-btn, .login-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logout-btn:hover, .login-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.logout-btn i, .login-btn i {
+  font-size: 0.9rem;
+}
