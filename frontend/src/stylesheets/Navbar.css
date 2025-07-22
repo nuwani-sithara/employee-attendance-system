@@ -1,0 +1,17 @@
+/* Navbar component styles */
+.navbar {
+  background: #007bff;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+.navbar a:hover {
+  text-decoration: underline;
+} 

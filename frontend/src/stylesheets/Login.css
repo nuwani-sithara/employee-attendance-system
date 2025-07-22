@@ -1,0 +1,30 @@
+/* Login component styles */
+.container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+}
+input, button {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:disabled {
+  background: #aaa;
+}
+.error {
+  color: #d00;
+  margin-bottom: 1rem;
+} 

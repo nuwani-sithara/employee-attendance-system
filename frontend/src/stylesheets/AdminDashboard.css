@@ -1,0 +1,8 @@
+/* AdminDashboard component styles */
+.dashboard {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 2rem;
+  background: #f5f5f5;
+  border-radius: 8px;
+} 
