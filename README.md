@@ -56,7 +56,7 @@ Both backend and frontend require environment variables for configuration.
 Create a file named `.env` in the `backend/` directory with the following content:
 
 ```env
-MONGO_URI=mongodb+srv://nuwanisitharacom:nuwani808@cluster0.njcwh4b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+MONGO_URI=mongodb+srv://nuwanisitharacom:nuwani808@cluster0.njcwh4b.mongodb.net/system_db?retryWrites=true&w=majority&appName=Cluster0
 JWT_SECRET=supersecretkey
 PORT=5000
 ```
