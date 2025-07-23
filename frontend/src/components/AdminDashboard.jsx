@@ -4,6 +4,7 @@ import AttendanceTable from './AttendanceTable';
 import '../stylesheets/AdminDashboard.css';
 import '../stylesheets/Footer.css';
 import { FontAwesomeIcon } from '../fontAwesome';
+import API from '../api';
 
 const AdminDashboard = ({ token }) => {
   const [logs, setLogs] = useState([]);
@@ -15,7 +16,7 @@ const AdminDashboard = ({ token }) => {
     const fetchLogs = async () => {
       setLoading(true);
       try {
-        const res = await axios.get('/admin/attendance', {
+        const res = await API.get(`/admin/attendance`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setLogs(res.data);

@@ -3,6 +3,7 @@ import axios from 'axios';
 import AttendanceTable from './AttendanceTable';
 import '../stylesheets/EmployeeDashboard.css';
 import { FontAwesomeIcon } from '../fontAwesome';
+import API from '../api';
 
 const EmployeeDashboard = ({ token }) => {
   const [logs, setLogs] = useState([]);
@@ -13,7 +14,7 @@ const EmployeeDashboard = ({ token }) => {
   const fetchLogs = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('/attendance/me', {
+      const res = await API.get('/attendance/me', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setLogs(res.data);
@@ -41,7 +42,7 @@ const EmployeeDashboard = ({ token }) => {
   const handleCheckIn = async () => {
     setMessage('');
     try {
-      await axios.post('/attendance/checkin', {}, {
+      await API.post('/attendance/checkin', {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessage('Check-in recorded successfully');
@@ -56,7 +57,7 @@ const EmployeeDashboard = ({ token }) => {
   const handleCheckOut = async () => {
     setMessage('');
     try {
-      await axios.post('/attendance/checkout', {}, {
+      await API.post('/attendance/checkout', {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessage('Check-out recorded successfully');

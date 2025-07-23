@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '../fontAwesome';
 import '../stylesheets/Register.css';
+import API from '../api';
 
 const Register = ({ onRegister }) => {
   const [formData, setFormData] = useState({
@@ -28,7 +29,7 @@ const Register = ({ onRegister }) => {
     setLoading(true);
     
     try {
-      const res = await axios.post('/auth/register', formData);
+      const res = await API.post(`/auth/register`, formData);
       setSuccess('Account created successfully! You can now log in.');
       setFormData({
         username: '',
