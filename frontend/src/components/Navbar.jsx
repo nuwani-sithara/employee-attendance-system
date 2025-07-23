@@ -26,7 +26,7 @@ const Navbar = ({ user, onLogout }) => (
           </div>
         ) : (
           <Link to="/register" className="login-btn">
-            <FontAwesomeIcon icon="sign-in-alt" /> Sign In
+            <FontAwesomeIcon icon="user-plus" /> Register
           </Link>
         )}
       </div>

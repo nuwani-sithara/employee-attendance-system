@@ -128,7 +128,7 @@ const Register = ({ onRegister }) => {
         </form>
 
         <div className="login-link">
-          Already have an account? <a href="/login">Sign in</a>
+          Already have an account? <a href="/login">Login</a>
         </div>
       </div>
     </div>
