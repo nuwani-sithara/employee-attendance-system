@@ -15,7 +15,8 @@ import {
   faCircleXmark,
   faRotate,
   faCircleExclamation,
-  faUserTag
+  faUserTag,
+  faUserPlus
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -35,7 +36,8 @@ library.add(
   faCircleXmark,
   faRotate,
   faCircleExclamation,
-  faUserTag
+  faUserTag,
+  faUserPlus
 );
 
 export { FontAwesomeIcon };
