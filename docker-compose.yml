@@ -15,10 +15,10 @@ services:
     ports:
       - '5000:5000'
     environment:
-      - ./backend/.env
-      # - MONGO_URI=mongodb+srv://nuwanisitharacom:nuwani808@cluster0.njcwh4b.mongodb.net/system_db?retryWrites=true&w=majority&appName=Cluster0
-      # - JWT_SECRET=supersecretkey
-      # - PORT=5000
+      # - ./backend/.env
+      - MONGO_URI=mongodb+srv://nuwanisitharacom:nuwani808@cluster0.njcwh4b.mongodb.net/system_db?retryWrites=true&w=majority&appName=Cluster0
+      - JWT_SECRET=supersecretkey
+      - PORT=5000
     depends_on:
       - mongo
   frontend:
