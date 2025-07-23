@@ -5,12 +5,14 @@ import '../stylesheets/AdminDashboard.css';
 import '../stylesheets/Footer.css';
 import { FontAwesomeIcon } from '../fontAwesome';
 import API from '../api';
+import AdminUserManagement from './AdminUserManagement';
 
 const AdminDashboard = ({ token }) => {
   const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredLogs, setFilteredLogs] = useState([]);
+  const [activeTab, setActiveTab] = useState('attendance');
 
   useEffect(() => {
     const fetchLogs = async () => {
@@ -58,43 +60,47 @@ const AdminDashboard = ({ token }) => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             aria-label="Search attendance records"
+            disabled={activeTab !== 'attendance'}
           />
         </div>
       </div>
 
-      <div className="stats-summary">
-        <div className="stat-card">
-          <div className="stat-value">{logs.length}</div>
-          <div className="stat-label">Total Records</div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-value">
-            {logs.filter(log => log.checkIn && !log.checkOut).length}
-          </div>
-          <div className="stat-label">Currently Working</div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-value">
-            {new Set(logs.map(log => log.user?.username)).size}
-          </div>
-          <div className="stat-label">Active Employees</div>
-        </div>
+      {/* Tabs */}
+      <div className="admin-tabs">
+        <button
+          className={`admin-tab${activeTab === 'attendance' ? ' active' : ''}`}
+          onClick={() => setActiveTab('attendance')}
+        >
+          Attendance
+        </button>
+        <button
+          className={`admin-tab${activeTab === 'users' ? ' active' : ''}`}
+          onClick={() => setActiveTab('users')}
+        >
+          User Management
+        </button>
       </div>
 
-      {loading ? (
-        <div className="loading-spinner">
-          <FontAwesomeIcon icon="spinner" spin /> Loading attendance data...
-        </div>
-      ) : (
-        <div className="attendance-section">
-          <div className="section-header">
-            <h3>Attendance Records</h3>
-            <div className="records-count">
-              Showing {filteredLogs.length} of {logs.length} records
-            </div>
+      {/* Tab Content */}
+      {activeTab === 'attendance' && (
+        loading ? (
+          <div className="loading-spinner">
+            <FontAwesomeIcon icon="spinner" spin /> Loading attendance data...
           </div>
-          <AttendanceTable logs={filteredLogs} isAdmin={true} />
-        </div>
+        ) : (
+          <div className="attendance-section">
+            <div className="section-header">
+              <h3>Attendance Records</h3>
+              <div className="records-count">
+                Showing {filteredLogs.length} of {logs.length} records
+              </div>
+            </div>
+            <AttendanceTable logs={filteredLogs} isAdmin={true} />
+          </div>
+        )
+      )}
+      {activeTab === 'users' && (
+        <AdminUserManagement token={token} />
       )}
     </div>
   );
